@@ -5,13 +5,14 @@ define([], function () {
     localStorage.clear();
 
     var getUrl = window.location;
-    var baseUrl = getUrl.protocol + "//" + getUrl.host;
+    var baseUrl = getUrl.protocol + "//" + getUrl.hostname + "/WebAPI/";
 
     // WebAPI
     configLocal.api = {
         name: "OHDSI",
-        url: baseUrl + "/WebAPI/",
+        url: baseUrl,
     };
+    console.info("baseURL is " + baseUrl)
 
     configLocal.cohortComparisonResultsEnabled = false;
     configLocal.userAuthenticationEnabled = true;
