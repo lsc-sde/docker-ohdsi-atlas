@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicas}}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ .Release.Name }}
+      nodeSelector:
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
+      tolerations:
+        {{- toYaml .Values.tolerations | nindent 8 }}
+        
+      volumes:
+      {{ if .Values.volumes }}
+      {{ toYaml .Values.volumes | nindent 6 }}
+      {{ end }}
+
+      containers:
+      - name: controller
+        image: {{ .Values.image }}
+        env:
+        {{ if .Values.env }}
+        {{ toYaml .Values.env | nindent 8 }}
+        {{ end }}
+        
+        volumeMounts:
+        {{ if .Values.volumeMounts }}
+        {{ toYaml .Values.volumeMounts | nindent 8 }}
+        {{ end }}
+          
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}

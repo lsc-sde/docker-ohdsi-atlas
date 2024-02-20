@@ -1,0 +1,8 @@
+replicas: 1
+image: lscsde/docker-template:0.1.0
+nodeSelector: {}
+tolerations: []
+volumes: []
+volumeMounts: []
+env: []
+resources: {}
