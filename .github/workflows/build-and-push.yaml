@@ -1,0 +1,21 @@
+name: Docker build and push
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - 'main'
+
+jobs:
+  semver:
+    uses: lsc-sde/lsc-sde/.github/workflows/semver.yaml@main
+    with:
+      useConfigFile: true
+
+  buildandpush:
+    uses: lsc-sde/lsc-sde/.github/workflows/docker-build.yaml@main
+    needs: semver
+    with:
+      imageName: ohdsi-atlas
+      tag: ${{ needs.semver.outputs.GitVersion_SemVer }}
+    secrets: inherit
