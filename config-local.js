@@ -15,7 +15,7 @@ define([], function () {
     console.info("baseURL is " + baseUrl)
 
     configLocal.cohortComparisonResultsEnabled = false;
-    configLocal.userAuthenticationEnabled = true;
+    configLocal.userAuthenticationEnabled = false;
     configLocal.plpResultsEnabled = false;
 
     configLocal.authProviders = [
