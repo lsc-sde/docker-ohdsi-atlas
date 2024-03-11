@@ -19,3 +19,13 @@ jobs:
       imageName: ohdsi-atlas
       tag: ${{ needs.semver.outputs.GitVersion_SemVer }}
     secrets: inherit
+
+  submodule:
+    uses: lsc-sde/lsc-sde/.github/workflows/update-submodules.yaml@main
+    needs: 
+    - semver
+    - buildandpush
+    with:
+      symver: ${{ needs.semver.outputs.GitVersion_SemVer }}
+      directory: docker/ohdsi-atlas
+    secrets: inherit
