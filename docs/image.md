@@ -2,7 +2,7 @@
 title: Container Image
 parent: Atlas
 layout: page
-grand_parent: OHDSI
+ancestor: OHDSI
 ---
 
 This is a customised version of the OHDSI Atlas image.
